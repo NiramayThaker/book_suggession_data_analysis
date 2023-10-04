@@ -29,4 +29,3 @@ class Command(BaseCommand):
             ))
 
         Book.objects.bulk_create(Book_data)
-
