@@ -1,0 +1,58 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+<style>
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      grid-gap: 10px;
+      background-color: #2196F3;
+      padding: 10px;
+      /* font-size: 2rem; */
+    }
+    
+    .grid-container > div {
+        background-color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+        padding: 20px 0;
+        font-size: 20px;
+    }
+    
+</style>
+
+    <h4>Recent search history<h4>
+
+    {% for h in search_history %}
+        <a href="{% url "history-data" h.history %}">
+            <h7>{{h.history}}</h7> 
+        </a> | 
+
+    {% endfor %}
+ 
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <h1>
+        Top books from all categories
+    </h1><br>
+    <div class="grid-container">
+    
+        <div>
+        {% for t in top %}
+            <div>
+        
+                <h4>{{t.title}}</h4>
+                Author: {{t.author}} <br>
+                Category: {{t.categories}} <br>
+                Rating: {{t.pageCount}} <br>
+                <hr>
+        
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+{% endblock content %}

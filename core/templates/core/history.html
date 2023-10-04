@@ -1,0 +1,18 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+    <h2>Best rated books for selected category</h2>    
+
+    <br>
+
+    {% for t in data %}
+        
+        <h4>{{t.title}}</h4>
+        Author: {{t.author}} <br>
+        Category: {{t.categories}} <br>
+        Rating: {{t.pageCount}} <hr>
+        
+    {% endfor %}
+
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+    <form action="{% url "custom-data-generation" %}" method="get">
+
+        {{form.as_p}}
+
+        <button>Submit</button>
+
+    </form> <br>
+
+    <h2>Best rated books for selected category</h2>    
+
+    <br>
+    <div class="container">
+        <div>
+
+            {% for t in data %}
+            <div>
+
+                <h4>{{t.title}}</h4>
+                Author: {{t.author}} <br>
+                Category: {{t.categories}} <br>
+                Rating: {{t.pageCount}} <br>
+                <hr>
+
+            </div>
+        {% endfor %}
+
+        </div>
+
+
+
+{% endblock content %}

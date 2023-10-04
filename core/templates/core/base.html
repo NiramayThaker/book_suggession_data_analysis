@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plotly/Django</title>
+
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.6.0"></script>
+
+{#    <title>{% block title %} {% endblock title %}</title>#}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+            <a class="navbar-brand" href="{% url "home" %}">Book Suggestion system</a>
+            </div>
+
+            <ul class="nav navbar-nav">
+
+                <li class="active"><a href="{% url "home" %}">Home</a></li>
+                <li><a href="{% url "custom-data-generation" %}">Custom Input</a></li>
+                <li><a href="{% url "chart" %}">Rating Chart</a></li>
+                <li><a href="{% url "category-chart" %}">Category Chart</a></li>
+                
+            </ul>
+            
+            <ul><ul class="nav navbar-nav navbar-right">
+                {% comment %} <li><a href="{% url "my-books" %}">My Books</a></li> {% endcomment %}
+                {% comment %} Search Bar 
+                <form class="navbar-form navbar-left" action="/action_page.php">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search" name="search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>  {% endcomment %}
+
+                {% if user.is_authenticated %}
+                    <li><a href="{% url "logout" %}"><span class="glyphicon glyphicon-log-in"></span> Logout | {{user.username}}</a></li>
+                    {% comment %} <li><a href=""><span class="glyphicon glyphicon-road"> Set Route</span></a></li> {% endcomment %}
+                    
+                {% else %}
+
+                    <li><a href="{% url "sign-up" %}"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+                    <li><a href="{% url "login" %}"><span class="glyphicon glyphicon-log-in"></span>login</a></li>
+
+                {% endif %} 
+
+            </ul> 
+
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div> 
+
+            {% block content %}
+            {% endblock %}
+
+        </div>
+    </div>
+    
+</body>
+</html>
